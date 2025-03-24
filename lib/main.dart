@@ -33,6 +33,7 @@ class NewsHomePage extends StatefulWidget{
 }
 
 class _NewsHomePageState extends State<NewsHomePage>{
+  int _selectedIndex= 0;
     final List<String> _categories = [
       'All', 'Sports', 'Politics', 'Business', 'Health', 'Travel', 'Science'
     ];
@@ -126,7 +127,7 @@ class _NewsHomePageState extends State<NewsHomePage>{
             child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text('Lastest',
+              Text('Latest',
               style: TextStyle(
               fontSize: 20,
                 fontWeight: FontWeight.bold
@@ -140,8 +141,68 @@ class _NewsHomePageState extends State<NewsHomePage>{
 
               ),))
             ],
-            ),)
+            ),),
+            SizedBox(
+              height: 40,
+              child: SingleChildScrollView( // Ngăn overflow
+                scrollDirection: Axis.horizontal,
+                child: Padding(
+                  padding: const EdgeInsets.only(left: 9.5), // Đẩy toàn bộ danh sách sang trái 16px
+                  child: Row(
+                    children: List.generate(_categories.length, (index) {
+                      // Đo kích thước chữ
+                      TextPainter textPainter = TextPainter(
+                        text: TextSpan(
+                          text: _categories[index],
+                          style: TextStyle(
+                            fontSize: 16,
+                            fontWeight: _selectedIndex == index ? FontWeight.bold : FontWeight.normal,
+                          ),
+                        ),
+                        textDirection: TextDirection.ltr,
+                      )..layout();
+                      double textWidth = textPainter.width;
+
+                      return Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 8), // Giữ khoảng cách giữa các chữ
+                        child: GestureDetector(
+                          onTap: () {
+                            setState(() {
+                              _selectedIndex = index;
+                            });
+                          },
+                          child: Column(
+                            children: [
+                              Text(
+                                _categories[index],
+                                style: TextStyle(
+                                  fontSize: 16,
+                                  color: _selectedIndex == index ? Colors.black : Colors.grey,
+                                  fontWeight: _selectedIndex == index ? FontWeight.bold : FontWeight.normal,
+                                ),
+                              ),
+                              SizedBox(height: 4),
+                              if (_selectedIndex == index)
+                                Container(
+                                  height: 2,
+                                  width: textWidth, // Gạch chân dài bằng chữ
+                                  color: Colors.blue,
+                                ),
+                            ],
+                          ),
+                        ),
+                      );
+                    }),
+                  ),
+                ),
+              ),
+            )
+
+
+
+
           ],
+
       ),
       bottomNavigationBar: BottomNavigationBar(
         backgroundColor: Colors.white,
