@@ -70,6 +70,15 @@ flutter:
     - assets/navbar/Frame.svg
     - assets/navbar/Vector.svg
     - assets/navbar/Bel.svg
+    - assets/news/imgTh1.png
+    - assets/news/imgTh2.png
+    - assets/news/imgTh3.png
+    - assets/news/imgTh4.png
+    - assets/news/imgTh5.png
+    - assets/news/imgTh4.png
+    - assets/author/CNN.svg
+    - assets/author/BBC.png
+    - assets/author/USA.png
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images
 

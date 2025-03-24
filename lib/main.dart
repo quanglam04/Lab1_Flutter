@@ -39,39 +39,44 @@ class _NewsHomePageState extends State<NewsHomePage>{
     ];
     final List<NewsItem> _newsItems = [
       NewsItem(
-        title: 'Ukraine\'s President Zelensky to BBC: Blood money being paid for Russian oil',
+        title: 'Ukraine\'s President Zelensky to BBC: Blood money being paid...',
         source: 'BBC News',
         timeAgo: '14m ago',
-        imageUrl: 'assets/ukraine.jpg',
+        imageUrl: 'assets/news/imgTh1.png',
         category: 'Europe',
+        author: 'assets/author/BBC.png'
       ),
       NewsItem(
-        title: 'Her train broke down. Her phone died. And then she met her...',
+        title: 'Her train broke down. Her phone died. And then she met her..',
         source: 'CNN',
         timeAgo: '1h ago',
-        imageUrl: 'assets/train.jpg',
+        imageUrl: 'assets/news/imgTh2.png',
         category: 'Travel',
+        author:'assets/author/CNN.svg'
       ),
       NewsItem(
         title: 'Russian warship: Moskva sinks in Black Sea',
         source: 'BBC News',
         timeAgo: '4h ago',
-        imageUrl: 'assets/warship.jpg',
+        imageUrl: 'assets/news/imgTh3.png',
         category: 'Europe',
+        author: 'assets/author/BBC.png'
       ),
       NewsItem(
-        title: 'Wind power produced more electricity than coal and nuclear for first time in US',
+        title: 'Wind power produced more electricity than coal and nucle...',
         source: 'USA Today',
         timeAgo: '4h ago',
-        imageUrl: 'assets/windpower.jpg',
+        imageUrl: 'assets/news/imgTh4.png',
         category: 'Money',
+        author: 'assets/author/USA.png'
       ),
       NewsItem(
-        title: '\'We keep rising to new challenges\': For churches hit by disasters, Easter brings hope',
+        title: '\'We keep rising to new challenges:\' For churches hit by',
         source: 'USA Today',
         timeAgo: '4h ago',
-        imageUrl: 'assets/church.jpg',
+        imageUrl: 'assets/news/imgTh5.png',
         category: 'Life',
+        author:'assets/author/USA.png'
       ),
     ];
   @override
@@ -89,34 +94,23 @@ class _NewsHomePageState extends State<NewsHomePage>{
             ),
 
             const Spacer(),
-            SizedBox(
-              width: 32, // Đặt chiều rộng đủ để Stack chứa icon
-              height: 32, // Đặt chiều cao đủ để tránh icon bị mất
-              child: Stack(
-                alignment: Alignment.center, // Giúp canh giữa icon trong Stack
-                children: [
-                  Container(
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(6),
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.black26,
-                          blurRadius: 0.0000000001,
-                          spreadRadius: 0.003,
-                        ),
-                      ],
-                    ),
-                    padding: EdgeInsets.all(8),
-                    child: SvgPicture.asset(
-                      'assets/navbar/Bel.svg',
-                      width: 18,
-                      height: 21.5,
-                    ),
-                  ),
-                ],
+            Container(
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(10),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.black12, // Màu nhạt hơn để làm mờ viền
+                    blurRadius: 4, // Tăng để làm mờ viền tốt hơn
+                    spreadRadius: -6,
+                  )
+                ]
               ),
-            ),
+              child: SvgPicture.asset(
+                'assets/navbar/Frame.svg',
+                width: 99,
+                height: 30,
+              ),
+            )
           ],
         ),
       ) ,
@@ -196,7 +190,15 @@ class _NewsHomePageState extends State<NewsHomePage>{
                   ),
                 ),
               ),
-            )
+            ),
+            Expanded(
+              child: ListView.builder(
+                itemCount: _newsItems.length,
+                itemBuilder: (context, index) {
+                  return NewsCard(newsItem: _newsItems[index]);
+                },
+              ),
+            ),
 
 
 
@@ -244,6 +246,84 @@ class _NewsHomePageState extends State<NewsHomePage>{
   }
 
 
+
+
+}
+
+
+class NewsCard extends StatelessWidget{
+  final NewsItem newsItem;
+  const NewsCard({
+    Key? key,
+    required this.newsItem,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
+      child: Row(
+      crossAxisAlignment: CrossAxisAlignment.start,
+    children: [
+      Image.asset(newsItem.imageUrl),
+      SizedBox(width: 12),
+      Expanded(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              newsItem.category,
+              style: TextStyle(
+                color: Colors.grey[600],
+                fontSize: 12,
+              ),
+            ),
+            SizedBox(height: 4),
+            Text(
+              newsItem.title,
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+                fontSize: 16,
+              ),
+              maxLines: 2,
+              overflow: TextOverflow.ellipsis,
+            ),
+            SizedBox(height: 8),
+            Row(
+              children: [
+                SvgPicture.asset(newsItem.author),
+                SizedBox(width: 4),
+                Text(
+                  newsItem.source,
+                  style: TextStyle(
+                    color: Colors.grey[600],
+                    fontSize: 12,
+                  ),
+                ),
+                SizedBox(width: 8),
+                Icon(
+                  Icons.access_time,
+                  color: Colors.grey[400],
+                  size: 12,
+                ),
+                SizedBox(width: 2),
+                Text(
+                  newsItem.timeAgo,
+                  style: TextStyle(
+                    color: Colors.grey[600],
+                    fontSize: 12,
+                  ),
+                ),
+              ],
+            ),
+          ],
+        ),
+
+      ),
+
+    ],
+    ));
+  }
 
 
 }

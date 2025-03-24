@@ -7,6 +7,7 @@ class NewsItem {
   final String timeAgo;
   final String imageUrl;
   final String category;
+  final String author;
 
   NewsItem({
     required this.title,
@@ -14,6 +15,7 @@ class NewsItem {
     required this.timeAgo,
     required this.imageUrl,
     required this.category,
+    required this.author
   });
 
 
