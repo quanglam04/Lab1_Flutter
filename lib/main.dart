@@ -122,7 +122,7 @@ class _NewsHomePageState extends State<NewsHomePage>{
       body: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Padding(padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
+            Padding(padding: EdgeInsets.only(left: 16, right: 5, top: 8, bottom: 8),
             child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
@@ -130,7 +130,15 @@ class _NewsHomePageState extends State<NewsHomePage>{
               style: TextStyle(
               fontSize: 20,
                 fontWeight: FontWeight.bold
-              ),)
+              ),),
+
+
+              TextButton(onPressed: (){}, child: Text('See all',
+              style: TextStyle(
+                color: Colors.grey,
+                fontSize: 13,
+
+              ),))
             ],
             ),)
           ],
