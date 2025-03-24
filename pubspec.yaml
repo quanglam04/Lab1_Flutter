@@ -69,6 +69,7 @@ flutter:
     - assets/navbar/bottomNavbar/bookmark.svg
     - assets/navbar/Frame.svg
     - assets/navbar/Vector.svg
+    - assets/navbar/Bel.svg
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images
 

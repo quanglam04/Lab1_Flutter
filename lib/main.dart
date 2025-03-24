@@ -82,23 +82,59 @@ class _NewsHomePageState extends State<NewsHomePage>{
         title: Row(
           children: [
             SvgPicture.asset(
-              'assets/icons/Frame.svg',
-              width: 24,
-              height: 24,
+              'assets/navbar/Vector.svg',
+              width: 99,
+              height: 30,
             ),
 
             const Spacer(),
-
-            SvgPicture.asset(
-              'assets/icons/Vector.svg',
-              width: 24,
-              height: 24,
+            SizedBox(
+              width: 32, // Đặt chiều rộng đủ để Stack chứa icon
+              height: 32, // Đặt chiều cao đủ để tránh icon bị mất
+              child: Stack(
+                alignment: Alignment.center, // Giúp canh giữa icon trong Stack
+                children: [
+                  Container(
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(6),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.black26,
+                          blurRadius: 0.0000000001,
+                          spreadRadius: 0.003,
+                        ),
+                      ],
+                    ),
+                    padding: EdgeInsets.all(8),
+                    child: SvgPicture.asset(
+                      'assets/navbar/Bel.svg',
+                      width: 18,
+                      height: 21.5,
+                    ),
+                  ),
+                ],
+              ),
             ),
-
-
           ],
         ),
       ) ,
+      body: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Padding(padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
+            child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text('Lastest',
+              style: TextStyle(
+              fontSize: 20,
+                fontWeight: FontWeight.bold
+              ),)
+            ],
+            ),)
+          ],
+      ),
       bottomNavigationBar: BottomNavigationBar(
         backgroundColor: Colors.white,
         type: BottomNavigationBarType.fixed,
