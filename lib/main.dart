@@ -1,8 +1,4 @@
 
-
-
-
-
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:lab1_homepage/data/models/NewsItem.dart';
@@ -34,6 +30,7 @@ class NewsHomePage extends StatefulWidget{
 
 class _NewsHomePageState extends State<NewsHomePage>{
   int _selectedIndex= 0;
+  int _selectedIndexNavbar = 0;
     final List<String> _categories = [
       'All', 'Sports', 'Politics', 'Business', 'Health', 'Travel', 'Science'
     ];
@@ -209,13 +206,19 @@ class _NewsHomePageState extends State<NewsHomePage>{
       bottomNavigationBar: BottomNavigationBar(
         backgroundColor: Colors.white,
         type: BottomNavigationBarType.fixed,
-        currentIndex: 0,
+        currentIndex:0,
+        onTap: (index) {
+          setState(() {
+            _selectedIndexNavbar = index; // Update the selected index when tapped
+          });
+        },
         items: [
           BottomNavigationBarItem(
             icon: SvgPicture.asset(
           'assets/navbar/bottomNavbar/home.svg',
           width: 24,
-          height: 24),
+          height: 24,
+              color: _selectedIndexNavbar == 0 ? Colors.blue : Colors.black,),
             label: "Home"
           ),
           BottomNavigationBarItem(
@@ -223,21 +226,24 @@ class _NewsHomePageState extends State<NewsHomePage>{
               icon: SvgPicture.asset(
                   'assets/navbar/bottomNavbar/explore.svg',
                   width: 24,
-                  height: 24),
+                  height: 24,
+                color: _selectedIndexNavbar == 1 ? Colors.blue : Colors.black,),
               label: "Explore"
           ),
           BottomNavigationBarItem(
               icon: SvgPicture.asset(
                   'assets/navbar/bottomNavbar/bookmark.svg',
                   width: 24,
-                  height: 24),
+                  height: 24,
+                color: _selectedIndexNavbar == 2 ? Colors.blue : Colors.black,),
               label: "Bookmark"
           ),
           BottomNavigationBarItem(
               icon: SvgPicture.asset(
                   'assets/navbar/bottomNavbar/profile.svg',
                   width: 24,
-                  height: 24),
+                  height: 24,
+                color: _selectedIndexNavbar == 3 ? Colors.blue : Colors.black,),
               label: "Profile"
           ),
         ],
