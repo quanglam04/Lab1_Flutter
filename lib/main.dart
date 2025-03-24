@@ -41,7 +41,7 @@ class _NewsHomePageState extends State<NewsHomePage>{
         timeAgo: '14m ago',
         imageUrl: 'assets/news/imgTh1.png',
         category: 'Europe',
-        author: 'assets/author/BBC.png'
+        author: 'assets/author/imgType/BBC.png'
       ),
       NewsItem(
         title: 'Her train broke down. Her phone died. And then she met her..',
@@ -49,7 +49,7 @@ class _NewsHomePageState extends State<NewsHomePage>{
         timeAgo: '1h ago',
         imageUrl: 'assets/news/imgTh2.png',
         category: 'Travel',
-        author:'assets/author/CNN.svg'
+        author:'assets/author/imgType/CNN.png'
       ),
       NewsItem(
         title: 'Russian warship: Moskva sinks in Black Sea',
@@ -57,7 +57,7 @@ class _NewsHomePageState extends State<NewsHomePage>{
         timeAgo: '4h ago',
         imageUrl: 'assets/news/imgTh3.png',
         category: 'Europe',
-        author: 'assets/author/BBC.png'
+        author: 'assets/author/imgType/BBC.png'
       ),
       NewsItem(
         title: 'Wind power produced more electricity than coal and nucle...',
@@ -65,7 +65,7 @@ class _NewsHomePageState extends State<NewsHomePage>{
         timeAgo: '4h ago',
         imageUrl: 'assets/news/imgTh4.png',
         category: 'Money',
-        author: 'assets/author/USA.png'
+        author: 'assets/author/imgType/USA.png'
       ),
       NewsItem(
         title: '\'We keep rising to new challenges:\' For churches hit by',
@@ -73,7 +73,7 @@ class _NewsHomePageState extends State<NewsHomePage>{
         timeAgo: '4h ago',
         imageUrl: 'assets/news/imgTh5.png',
         category: 'Life',
-        author:'assets/author/USA.png'
+        author:'assets/author/imgType/USA.png'
       ),
     ];
   @override
@@ -135,7 +135,7 @@ class _NewsHomePageState extends State<NewsHomePage>{
 
               TextButton(onPressed: (){}, child: Text('See all',
               style: TextStyle(
-                color: Colors.grey,
+                color: Colors.black87,
                 fontSize: 13,
 
               ),))
@@ -163,7 +163,7 @@ class _NewsHomePageState extends State<NewsHomePage>{
                       double textWidth = textPainter.width;
 
                       return Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 8), // Giữ khoảng cách giữa các chữ
+                        padding: const EdgeInsets.symmetric(horizontal: 6.7), // Giữ khoảng cách giữa các chữ
                         child: GestureDetector(
                           onTap: () {
                             setState(() {
@@ -176,7 +176,7 @@ class _NewsHomePageState extends State<NewsHomePage>{
                                 _categories[index],
                                 style: TextStyle(
                                   fontSize: 16,
-                                  color: _selectedIndex == index ? Colors.black : Colors.grey,
+                                  color: _selectedIndex == index ? Colors.black : Colors.black87,
                                   fontWeight: _selectedIndex == index ? FontWeight.bold : FontWeight.normal,
                                 ),
                               ),
@@ -297,7 +297,7 @@ class NewsCard extends StatelessWidget{
       crossAxisAlignment: CrossAxisAlignment.start,
     children: [
       Image.asset(newsItem.imageUrl),
-      SizedBox(width: 12),
+      SizedBox(width: 5),
       Expanded(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -309,7 +309,7 @@ class NewsCard extends StatelessWidget{
                 fontSize: 12,
               ),
             ),
-            SizedBox(height: 4),
+            SizedBox(height: 8),
             Text(
               newsItem.title,
               style: TextStyle(
@@ -319,10 +319,10 @@ class NewsCard extends StatelessWidget{
               maxLines: 2,
               overflow: TextOverflow.ellipsis,
             ),
-            SizedBox(height: 8),
+            SizedBox(height: 4),
             Row(
               children: [
-                SvgPicture.asset(newsItem.author),
+                Image.asset(newsItem.author),
                 SizedBox(width: 4),
                 Text(
                   newsItem.source,
@@ -345,6 +345,8 @@ class NewsCard extends StatelessWidget{
                     fontSize: 12,
                   ),
                 ),
+                Spacer(),
+                Text('...')
               ],
             ),
           ],

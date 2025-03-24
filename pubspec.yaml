@@ -76,9 +76,9 @@ flutter:
     - assets/news/imgTh4.png
     - assets/news/imgTh5.png
     - assets/news/imgTh4.png
-    - assets/author/CNN.svg
-    - assets/author/BBC.png
-    - assets/author/USA.png
+    - assets/author/imgType/BBC.png
+    - assets/author/imgType/CNN.png
+    - assets/author/imgType/USA.png
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images
 
