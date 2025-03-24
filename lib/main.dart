@@ -82,7 +82,9 @@ class _NewsHomePageState extends State<NewsHomePage>{
       appBar: AppBar(
         backgroundColor: Colors.white,
         elevation: 0,
-        title: Row(
+
+        title: Padding(padding: const EdgeInsets.only(top: 20),
+        child: Row(
           children: [
             SvgPicture.asset(
               'assets/navbar/Vector.svg',
@@ -93,28 +95,34 @@ class _NewsHomePageState extends State<NewsHomePage>{
             const Spacer(),
             Container(
               decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(10),
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.black12, // Màu nhạt hơn để làm mờ viền
-                    blurRadius: 4, // Tăng để làm mờ viền tốt hơn
-                    spreadRadius: -6,
-                  )
-                ]
+                  borderRadius: BorderRadius.circular(10),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.black12, // Màu nhạt hơn để làm mờ viền
+                      blurRadius: 13, // Tăng để làm mờ viền tốt hơn
+                      spreadRadius: -4.2,
+
+                    )
+                  ]
               ),
-              child: SvgPicture.asset(
-                'assets/navbar/Frame.svg',
-                width: 99,
+              child: SizedBox(
+                width: 45,
                 height: 30,
+                child: SvgPicture.asset(
+                  'assets/navbar/Frame.svg',
+                  fit: BoxFit.cover, // This will ensure it fills the SizedBox
+                ),
               ),
             )
           ],
         ),
+
+        )
       ) ,
       body: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Padding(padding: EdgeInsets.only(left: 16, right: 5, top: 8, bottom: 8),
+            Padding(padding: EdgeInsets.only(left: 16, right: 5, top: 25  , bottom: 8),
             child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
@@ -203,50 +211,67 @@ class _NewsHomePageState extends State<NewsHomePage>{
           ],
 
       ),
-      bottomNavigationBar: BottomNavigationBar(
-        backgroundColor: Colors.white,
-        type: BottomNavigationBarType.fixed,
-        currentIndex:0,
-        onTap: (index) {
-          setState(() {
-            _selectedIndexNavbar = index; // Update the selected index when tapped
-          });
-        },
-        items: [
-          BottomNavigationBarItem(
-            icon: SvgPicture.asset(
-          'assets/navbar/bottomNavbar/home.svg',
-          width: 24,
-          height: 24,
-              color: _selectedIndexNavbar == 0 ? Colors.blue : Colors.black,),
-            label: "Home"
-          ),
-          BottomNavigationBarItem(
+      bottomNavigationBar: Container(
+        decoration: BoxDecoration(
+          color: Colors.white,
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black12, // Màu của shadow
+              blurRadius: 10, // Độ mờ của shadow
+             // Phạm vi lan rộng của shadow
 
-              icon: SvgPicture.asset(
+            ),
+          ],
+        ),
+        child: BottomNavigationBar(
+          backgroundColor: Colors.transparent, // Làm trong suốt để hiện shadow
+          elevation: 0, // Loại bỏ shadow mặc định
+          type: BottomNavigationBarType.fixed,
+          currentIndex: 0,
+          onTap: (index) {
+            setState(() {
+              _selectedIndexNavbar = index;
+            });
+          },
+          items: [
+            BottomNavigationBarItem(
+                icon: SvgPicture.asset(
+                  'assets/navbar/bottomNavbar/home.svg',
+                  width: 24,
+                  height: 24,
+                  color: _selectedIndexNavbar == 0 ? Colors.blue : Colors.black,
+                ),
+                label: "Home"
+            ),
+            BottomNavigationBarItem(
+                icon: SvgPicture.asset(
                   'assets/navbar/bottomNavbar/explore.svg',
                   width: 24,
                   height: 24,
-                color: _selectedIndexNavbar == 1 ? Colors.blue : Colors.black,),
-              label: "Explore"
-          ),
-          BottomNavigationBarItem(
-              icon: SvgPicture.asset(
+                  color: _selectedIndexNavbar == 1 ? Colors.blue : Colors.black,
+                ),
+                label: "Explore"
+            ),
+            BottomNavigationBarItem(
+                icon: SvgPicture.asset(
                   'assets/navbar/bottomNavbar/bookmark.svg',
                   width: 24,
                   height: 24,
-                color: _selectedIndexNavbar == 2 ? Colors.blue : Colors.black,),
-              label: "Bookmark"
-          ),
-          BottomNavigationBarItem(
-              icon: SvgPicture.asset(
+                  color: _selectedIndexNavbar == 2 ? Colors.blue : Colors.black,
+                ),
+                label: "Bookmark"
+            ),
+            BottomNavigationBarItem(
+                icon: SvgPicture.asset(
                   'assets/navbar/bottomNavbar/profile.svg',
                   width: 24,
                   height: 24,
-                color: _selectedIndexNavbar == 3 ? Colors.blue : Colors.black,),
-              label: "Profile"
-          ),
-        ],
+                  color: _selectedIndexNavbar == 3 ? Colors.blue : Colors.black,
+                ),
+                label: "Profile"
+            ),
+          ],
+        ),
       ),
     );
   }
@@ -267,7 +292,7 @@ class NewsCard extends StatelessWidget{
   @override
   Widget build(BuildContext context) {
     return Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
+        padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 16.4),
       child: Row(
       crossAxisAlignment: CrossAxisAlignment.start,
     children: [
@@ -280,7 +305,7 @@ class NewsCard extends StatelessWidget{
             Text(
               newsItem.category,
               style: TextStyle(
-                color: Colors.grey[600],
+                color: Colors.black87,
                 fontSize: 12,
               ),
             ),
@@ -288,7 +313,7 @@ class NewsCard extends StatelessWidget{
             Text(
               newsItem.title,
               style: TextStyle(
-                fontWeight: FontWeight.bold,
+                color: Colors.black87,
                 fontSize: 16,
               ),
               maxLines: 2,
@@ -302,21 +327,21 @@ class NewsCard extends StatelessWidget{
                 Text(
                   newsItem.source,
                   style: TextStyle(
-                    color: Colors.grey[600],
+                    fontWeight: FontWeight.bold,
                     fontSize: 12,
                   ),
                 ),
                 SizedBox(width: 8),
                 Icon(
                   Icons.access_time,
-                  color: Colors.grey[400],
+                  color: Colors.black87,
                   size: 12,
                 ),
                 SizedBox(width: 2),
                 Text(
                   newsItem.timeAgo,
                   style: TextStyle(
-                    color: Colors.grey[600],
+                    color: Colors.black87,
                     fontSize: 12,
                   ),
                 ),
